@@ -1,0 +1,33 @@
+const pass = document.querySelector('#password');
+const p = document.querySelector('.passinfo');
+const letters = /[a-z]/i;
+const numbers = /[0-9]/;
+const special = /[!@#$%^&*()]/;
+const minValue = 10;
+
+const showMsg = () => {
+    if (pass.value.length > minValue && pass.value.match(letters) && pass.value.match(numbers) && pass.value.match(special))  {
+        p.textContent = "Masz bardzo dobre hasło. Wręcz doskonałe!"
+        p.style.color = "blue"
+    } else if (pass.value.length > minValue && pass.value.match(letters) && pass.value.match(numbers))  {
+        p.textContent = "Masz dobre hasło"
+        p.style.color = "lime"
+   } else if (pass.value.length > minValue && pass.value.match(letters)){
+        p.textContent = "Masz słabe hasło"
+        p.style.color = "tomato"
+    } else {
+        p.textContent = "Hasło zbyt krótkie"
+        p.style.color = "tomato"
+    }
+}
+
+const checkPass = () => {
+    if (pass.value !== ''){
+        showMsg()
+    } else {
+        p.textContent = "Nie podałeś/podałaś hasła..."
+        p.style.color =''
+    }
+}
+
+pass.addEventListener('keyup',checkPass)
